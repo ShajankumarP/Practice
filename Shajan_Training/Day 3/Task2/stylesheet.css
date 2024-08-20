@@ -16,6 +16,16 @@
     grid-area: h;
     background-color: rgb(23, 189, 23);
 }
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "h"
+        "main"
+        "side"
+        "f";
+    }
+}
 .sidebar{
     grid-area: side;
     background-color: rgb(206, 202, 202);
