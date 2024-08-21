@@ -518,12 +518,11 @@ th:nth-child(8),
 td:nth-child(8) {
     width: 6%;
 }
-/* ID column */
+
 td:nth-child(1) {
     font-weight: bold;
 }
 
-/* Name column with avatar */
 td:nth-child(2) {
     display: flex;
     align-items: center;
@@ -536,14 +535,13 @@ td:nth-child(2) img {
     margin-right: 10px;
 }
 
-/* Status column */
 td:nth-child(6) {
     text-align: center;
 }
-.side-menu {
+/* .side-menu {
     display: none;
     padding-top: 25px;
-}
+} */
 .action-btn {
     background: none;
     border: none;
@@ -595,12 +593,43 @@ td:nth-child(6) {
 
 .side-menu{
     display: none;
+    animation: slide .2s forwards;
+}
+@keyframes slide {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+.side-menu .button {
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 5px 5px 35px;
+    display: flex;
+}
+
+.side-menu .button button {
+    font-family: "Popins", 'Ubuntu';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8em;
+    width: 140px;
+    height: 32px;
+    color: grey;
+    border: none;
+    text-align: left;
+    padding-left: 10px;
+    background-color: transparent;
 }
 .side-menu-bar{
     margin-top: 30px;
     margin-left: 20px;
     display: none;
 }
+
+
 @media only screen and (max-width: 1080px) {
 
     .side-bar,
@@ -617,6 +646,9 @@ td:nth-child(6) {
     }
 
     .side-menu-bar {
+        display: block;
+    }
+    .side-menu .side-menu-bar:hover {
         display: block;
     }
 }
