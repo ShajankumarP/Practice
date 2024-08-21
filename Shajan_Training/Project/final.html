@@ -42,7 +42,7 @@
             <label for="busyModeToggle" class="toggle-switch"></label>
         </div>
         <div class="side-menu-container">
-            <div class="side-menu-bar"><i class="fa-solid fa-list"></i></div>
+            <button id="ham" class="side-menu-bar"><i class="fa-solid fa-list"></i></button>
             <div class="side-menu">
                 <div class="button"><button class="aside-button1">
                     <i style="margin-right: 5px;" class="fa-solid fa-boxes-stacked fa-x1"></i>
@@ -229,6 +229,19 @@
             </section>
         </div>
     </div>
+    <script>
+        let ham = document.querySelector('#ham')
+        let menu = document.querySelector('.side-menu')
+        let flag = 0
+        ham.addEventListener('click' , () => {
+            if(flag === 0){
+                menu.style.display = 'block'
+                flag = 1
+            }else{
+                menu.style.display = 'none'
+                flag = 0
+            }
+        })
+    </script>
 </body>
-
 </html>
