@@ -254,8 +254,8 @@ aside .button:hover {
 
 .dashboard .summary-cards {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 20px;
+    margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;
 
@@ -263,22 +263,27 @@ aside .button:hover {
 
 .card {
     flex: 1;
-    background-color: white;
-    border-radius: 10px;
-    padding: 8px;
+    background-color: w#ffffff;
+    border-radius: 12px;
+    padding: 20px;
     display: flex;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border: 0.5px solid rgb(184, 179, 179);
 }
 
+.card orders{
+    align-items: center;
+    justify-content: center;
+}
 .icon-container {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
     margin-right: 15px;
 }
 
@@ -315,32 +320,32 @@ aside .button:hover {
 }
 
 .card-content h3 {
-    font-size: 18px;
+    font-size: 24px;
     margin: 0;
     font-weight: bold;
 }
 
 .card-content p {
-    font-size: 12px;
-    margin: 2px 0 0;
+    font-size: 14px;
+    margin: 5px 0 0;
     color: #666;
 }
 
 .orders-table {
-    padding: 20px;
-    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     flex: 1;
-    overflow: hidden;
+    overflow: hauto;
 }
 
 .orders-table header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
 }
 .orders-table h3 {
-    font-size: 1em;
+    font-size: 1.3em;
     margin: 0;
 }
 .recent-orders-btn {
@@ -628,7 +633,21 @@ td:nth-child(6) {
     margin-left: 20px;
     display: none;
 }
+.side-menu div button:focus {
+    color: rgb(231, 10, 10);
+    background-color: #fae8e8;
+    border-radius: 5px;
+}
 
+.side-menu .button button:hover {
+    cursor: pointer;
+}
+
+.side-menu .button:hover {
+    border-left: 5px solid rgb(231, 10, 10);
+    padding-left: 30px;
+    transition: border-left 0.25s;
+}
 
 @media only screen and (max-width: 1080px) {
 
