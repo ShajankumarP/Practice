@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Clone</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/5d01fe3d37.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="side-bar">
+            <img style="border-radius: 5px;" src="/Project/images/logo.PNG">
+            <div class="button"><button class="aside-button1">
+                    <i class="fa-solid fa-boxes-stacked fa-x1"></i>
+                    Live Orders</button></div>
+            <div class="button"><button class="aside-button2">
+                    <i class="fa-solid fa-bag-shopping fa-x1"></i>
+                    Order History</button></div>
+            <div class="button"><button class="aside-button3">
+                    <i class="fa-solid fa-percent fa-x1"></i>
+                    Offers</button></div>
+            <div class="button"><button class="aside-button4">
+                    <i class="fa-solid fa-box-archive fa-x1"></i>
+                    Products</button></div>
+            <div class="button"><button class="aside-button5">
+                    <i class="fa-solid fa-store"></i>
+                    Stock</button></div>
+            <div class="button"><button class="aside-button6">
+                    <i class="fa-solid fa-message fa-x1"></i>
+                    Message</button></div>
+            <div class="button"><button class="aside-button7">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings</button></div>
+        </aside>
+        <div class="busy-mode">
+            <span>Busy Mode</span>
+            <input type="checkbox" id="busyModeToggle">
+            <label for="busyModeToggle" class="toggle-switch"></label>
+        </div>
+        <div class="side-menu-container">
+            <button id="ham" class="side-menu-bar"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="side-menu">
+                <div class="button"><button class="aside-button1">
+                    <i style="margin-right: 5px;" class="fa-solid fa-boxes-stacked fa-x1"></i>
+                    Live Orders</button></div>
+            <div class="button"><button class="aside-button2">
+                    <i style="margin-right: 5px;" class="fa-solid fa-bag-shopping fa-x1"></i>
+                    Order History</button></div>
+            <div class="button"><button class="aside-button3">
+                    <i style="margin-right: 5px;" class="fa-solid fa-percent fa-x1"></i>
+                    Offers</button></div>
+            <div class="button"><button class="aside-button4">
+                    <i style="margin-right: 5px;" class="fa-solid fa-box-archive fa-x1"></i>
+                    Products</button></div>
+            <div class="button"><button class="aside-button5">
+                    <i style="margin-right: 5px;" class="fa-solid fa-store"></i>
+                    Stock</button></div>
+            <div class="button"><button class="aside-button6">
+                    <i style="margin-right: 5px;" class="fa-solid fa-message fa-x1"></i>
+                    Message</button></div>
+            <div class="button"><button class="aside-button7">
+                    <i style="margin-right: 5px;" class="fa-solid fa-gear fa-x1"></i>
+                    Settings</button></div>
+            </div>
+       
+        </div>
+
+        <div class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="     Search">
+                </div>
+                <div class="top-bar-right">
+                    <div class="order-toggle">
+                        <span class="order-status">Open For Order</span>
+                        <input type="checkbox" id="orderToggle" checked>
+                        <label for="orderToggle" class="toggle-switch"></label>
+                    </div>
+                    <div class="notification">
+                        <i class="fa-regular fa-bell notification-icon"></i>
+                    </div>
+                    <div class="profile">
+                        <img src="./images/profile.jpg" alt="User Profile">
+                        <span>Lubomir Dvořák</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+            <section class="dashboard">
+                <h2>Live Orders</h2>
+                <div class="summary-cards">
+                    <div class="card orders">
+                        <div class="card-content-container">
+                            <div class="icon-container">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>47</h3>
+                                <p>Orders</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card pending">
+                        <div class="card-content-container">
+                        <div class="icon-container">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>56</h3>
+                            <p>Total Pending</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card dispatch">
+                        <div class="card-content-container">
+                            <div class="icon-container">
+                                <i class="fa-solid fa-truck"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>26</h3>
+                                <p>Total Dispatch</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="orders-table">
+                    <header>
+                        <h3>Orders</h3>
+                        <button class="recent-orders-btn">
+                            <span>Recent Orders</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </header>
+                    <div class="table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Payment</th>
+                                    <th>Time remaining</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#2632</td>
+                                    <td><img src="./images/f1.jpg" alt="Avatar"> Brooklyn Zoe</td>
+                                    <td>Cash</td>
+                                    <td>13 min</td>
+                                    <td class="delivery">Delivery</td>
+                                    <td class="status-cell">
+                                        <span class="status-badge on-the-way">On The Way</span>
+                                    </td>
+                                    <td>£12.00</td>
+                                    <td><button class="action-btn">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <div class="display-option">
+                                            <span>Cancel</span>
+                                            <span class="type-delivery">Cancel Product</span>
+                                            <span>Message</span>
+                                        </div>
+                                    </button></td>
+                                </tr>
+                                <tr>
+                                    <td>#2632</td>
+                                    <td><img src="./images/f2.jpg" alt="Avatar"> Alice Krejčová</td>
+                                    <td>Paid</td>
+                                    <td>49 min</td>
+                                    <td>Collection</td>
+                                    <td class="status-cell">
+                                        <span class="status-badge ready">Ready</span>
+                                    </td>
+                                    <td>£14.00</td>
+                                    <td><button class="action-btn">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <div class="display-option">
+                                            <span>Cancel</span>
+                                            <span class="type-delivery">Cancel Product</span>
+                                            <span>Message</span>
+                                        </div>
+                                    </button></td>
+                                </tr>
+                                <tr>
+                                    <td>#2632</td>
+                                    <td><img src="./images/m1.jpg" alt="Avatar"> Juriaan van</td>
+                                    <td>Cash</td>
+                                    <td>07 min</td>
+                                    <td class="delivery">Delivery</td>
+                                    <td class="status-cell">
+                                        <span class="status-badge on-the-way">On The Way</span>
+                                    </td>
+                                    <td>£18.00</td>
+                                    <td><button class="action-btn">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <div class="display-option">
+                                            <span>Cancel</span>
+                                            <span class="type-delivery">Cancel Product</span>
+                                            <span>Message</span>
+                                        </div>
+                                    </button></td>
+                                </tr>
+                                <tr>
+                                    <td>#2632</td>
+                                    <td><img src="./images/m2.jpg" alt="Avatar"> Ya Chin-Ho</td>
+                                    <td>Paid</td>
+                                    <td>49 min</td>
+                                    <td>Collection</td>
+                                    <td class="status-cell">
+                                        <span class="status-badge ready">Ready</span>
+                                    </td>
+                                    <td>£26.00</td>
+                                    <td><button class="action-btn">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        <div class="display-option">
+                                            <span>Cancel</span>
+                                            <span class="type-delivery">Cancel Product</span>
+                                            <span>Message</span>
+                                        </div>
+                                    </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        let ham = document.querySelector('#ham')
+        let menu = document.querySelector('.side-menu')
+        let flag = 0
+        ham.addEventListener('click' , () => {
+            if(flag === 0){
+                menu.style.display = 'block'
+                flag = 1
+            }else{
+                menu.style.display = 'none'
+                flag = 0
+            }
+        })
+    </script>
+</body>
+</html>
