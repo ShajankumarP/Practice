@@ -447,8 +447,8 @@ tbody td {
 thead th {
     padding: 10px;
     text-align: left;
-    color: #888;
-    font-weight: normal;
+    color: black;
+    font-weight:bolder;
 }
 
 thead th:first-child,
@@ -533,13 +533,6 @@ tbody td {
     color: #FF9500;
 }
 
-/* .action-btn {
-    position: relative;
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    cursor: pointer;
-} */
 td:nth-child(8) {
     text-align: right;
 }
@@ -614,11 +607,9 @@ td:nth-child(2) img {
     font-size: 1.2em;
     cursor: pointer;
     position: relative;
+    padding-left: 15px;
+    /* display: flex; */
 }
-/* .action{
-    display: flex;
-    align-items: center;
-} */
 
 .display-option {
     opacity: 0;
