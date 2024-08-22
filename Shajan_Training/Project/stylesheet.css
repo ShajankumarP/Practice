@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 html, body {
-    height: 100%;
+    height: fit-content;
     margin: 0;
     overflow: hidden;
 }
@@ -20,7 +20,10 @@ html, body {
     flex: 1;
     flex-direction: column;
     overflow: hidden;
-    padding: 10px;
+    padding-left: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
     background-color: white;
 }
 
@@ -31,7 +34,7 @@ html, body {
     flex-direction: column;
     height: 100%;
     width: 180px;
-    padding: 10px;
+    margin-left: 0;
     overflow-y: auto;
 }
 
@@ -51,7 +54,6 @@ aside .button {
 }
 
 aside .button button {
-    font-family: "Popins", 'Ubuntu';
     font-weight: 400;
     font-style: normal;
     font-size: 0.8em;
@@ -73,27 +75,33 @@ aside div button:focus {
 aside .button button:hover {
     cursor: pointer;
 }
-
+aside .button{
+    border-left: 5px solid white;
+}
 aside .button:hover {
     border-left: 5px solid rgb(231, 10, 10);
-    padding-left: 30px;
     transition: border-left 0.25s;
 }
 
 .busy-mode {
     position: absolute;
     bottom: 40px;
-    left: 3px;
+    left: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: calc(100%-40px);
     color: #666;
     font-size: 13px;
-    width: 200px;
+    max-width: 100%;
+    max-width: 160px;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 
 .busy-mode span {
     margin-right: 10px;
+    white-space: nowrap;
 }
 
 .busy-mode input[type="checkbox"] {
@@ -103,19 +111,20 @@ aside .button:hover {
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 36px;
-    height: 18px;
+    width: 50px;
+    height: 24px;
     background-color: #ccc;
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s;
+    flex-shrink: 0;
 }
 
 .toggle-switch::after {
-    content: '';
+    content: "";
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: white;
     top: 2px;
@@ -147,7 +156,7 @@ aside .button:hover {
     align-items: center;
 }
 .search-container input[type="text"] {
-    width: 130px;
+    width: 180px;
     height: 16px;
     font-size: 12px;
 }
@@ -160,7 +169,7 @@ aside .button:hover {
 .top-bar input[type="text"] {
     padding: 8px 10px 8px 30px;
     height: 20px;
-    background-color: #f9f9f9;
+    background-color: white;
     font-size: 14px;
     border: 0.5px solid #5e5b5b;
     border-radius: 10px;
@@ -260,7 +269,9 @@ aside .button:hover {
     margin-right: 20px;
 
 }
-
+.card.orders, .card.pending, .card.dispatch{
+    background-color: white;
+}
 .card {
     flex: 1;
     background-color: w#ffffff;
@@ -272,9 +283,59 @@ aside .button:hover {
     border: 0.5px solid rgb(184, 179, 179);
 }
 
-.card orders{
+.card.orders, .card{
+    display: flex;
     align-items: center;
     justify-content: center;
+}
+.card.orders .card-content-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.card.orders .icon-container {
+    margin-bottom: 10px;
+}
+
+.card.orders .card-content {
+    flex-grow: 1;
+}
+.card.pending, .card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card.pending .card-content-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.card.pending .icon-container {
+    margin-bottom: 10px;
+}
+
+.card.pending .card-content {
+    flex-grow: 1;
+}
+.card.dispatch, .card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card.dispatch .card-content-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.card.dispatch .icon-container {
+    margin-bottom: 10px;
+}
+
+.card.dispatch .card-content {
+    flex-grow: 1;
 }
 .icon-container {
     width: 40px;
@@ -320,7 +381,7 @@ aside .button:hover {
 }
 
 .card-content h3 {
-    font-size: 24px;
+    font-size: 27px;
     margin: 0;
     font-weight: bold;
 }
@@ -328,15 +389,19 @@ aside .button:hover {
 .card-content p {
     font-size: 14px;
     margin: 5px 0 0;
+    font-size: large;
     color: #666;
 }
-
+table{
+    height: fit-content;
+    margin-bottom: 5px;
+}
 .orders-table {
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     flex: 1;
-    overflow: hauto;
+    margin-bottom: 10px;
 }
 
 .orders-table header {
@@ -421,7 +486,7 @@ tbody tr{
 }
 tbody tr:hover{
     background-color: white;
-    transform: scale(1.02) translateX(25px);
+    transform: scale(1.02) translateX(20px);
     box-shadow: 16px 16px 38px rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
@@ -445,34 +510,36 @@ tbody td {
 .status-cell {
     vertical-align: middle;
     height: 100%;
-    text-align: center;
+    white-space: nowrap;
+    padding: 5px;
 }
 
 .status-badge {
-    padding: 5px 10px;
-    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 8px;
     font-size: 0.85em;
     white-space: nowrap;
     font-weight: 500;
 }
 
 .status-badge.ready {
-    background-color: #FFF0ED;
-    color: #FF3B30;
+    background-color: #d33e20;
+    color: white;
 }
 
 .status-badge.on-the-way {
-    background-color: #FFF9EC;
+    background-color: #dddbd7;
     color: #FF9500;
 }
 
-.action-btn {
+/* .action-btn {
     position: relative;
     background: none;
     border: none;
     font-size: 1.2em;
     cursor: pointer;
-}
+} */
 td:nth-child(8) {
     text-align: right;
 }
@@ -508,10 +575,9 @@ td:nth-child(5) {
     width: 10%;
 }
 
-th:nth-child(6) , .status-cell {
-    width: 90px;
-    min-width: 90px;
-    text-align: center;
+th:nth-child(6),
+td:nth-child(6) {
+    width:12%;
 }
 
 th:nth-child(7),
@@ -531,6 +597,7 @@ td:nth-child(1) {
 td:nth-child(2) {
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 td:nth-child(2) img {
@@ -540,13 +607,7 @@ td:nth-child(2) img {
     margin-right: 10px;
 }
 
-td:nth-child(6) {
-    text-align: center;
-}
-/* .side-menu {
-    display: none;
-    padding-top: 25px;
-} */
+
 .action-btn {
     background: none;
     border: none;
@@ -554,6 +615,10 @@ td:nth-child(6) {
     cursor: pointer;
     position: relative;
 }
+/* .action{
+    display: flex;
+    align-items: center;
+} */
 
 .display-option {
     opacity: 0;
@@ -580,6 +645,7 @@ td:nth-child(6) {
 }
 
 .display-option span {
+    font-family: Arial, Helvetica, sans-serif;
     display: block;
     padding: 8px 16px;
     color: #333;
@@ -589,7 +655,7 @@ td:nth-child(6) {
 }
 
 .display-option span:hover {
-    background-color: #f5f5f5;
+    color: red;
 }
 
 .display-option span.cancel-product {
@@ -611,12 +677,12 @@ td:nth-child(6) {
 .side-menu .button {
     height: fit-content;
     width: fit-content;
-    padding: 5px 5px 5px 35px;
+    padding: 5px 5px 5px 5px;
     display: flex;
 }
 
 .side-menu .button button {
-    font-family: "Popins", 'Ubuntu';
+    font-family: "Popins", 'sans-serif';
     font-weight: 400;
     font-style: normal;
     font-size: 0.8em;
@@ -629,32 +695,28 @@ td:nth-child(6) {
     background-color: transparent;
 }
 .side-menu-bar{
-    margin-top: 30px;
-    margin-left: 20px;
+    margin-top: 25px;
+    margin-left: 5px;
+    align-items: center;
+    background-color: white;
+    border: none;
     display: none;
+
 }
 .side-menu div button:focus {
     color: rgb(231, 10, 10);
     background-color: #fae8e8;
-    border-radius: 5px;
 }
 
 .side-menu .button button:hover {
     cursor: pointer;
 }
-
+.side-menu .button{
+    border-left: 5px solid white;
+}
 .side-menu .button:hover {
     border-left: 5px solid rgb(231, 10, 10);
-    padding-left: 30px;
     transition: border-left 0.25s;
-}
-
-@media only screen and (max-width: 1080px) {
-
-    .side-bar,
-    .busy-mode {
-        width: 100px;
-    }
 }
 
 @media only screen and (max-width: 960px) {
@@ -666,10 +728,13 @@ td:nth-child(6) {
 
     .side-menu-bar {
         display: block;
+        width: 15px;
+
     }
     .side-menu .side-menu-bar:hover {
         display: block;
     }
+    
 }
 
 @media only screen and (max-width: 860px) {
@@ -680,12 +745,15 @@ td:nth-child(6) {
     .order-status {
         display: none;
     }
+    .toggle-switch{
+        display: none;
+    }
 }
 @media (max-width: 768px) {
     thead th, tbody td {
         padding: 10px 5px;
     }
-    
+   
     .status-badge {
         padding: 3px 6px;
         font-size: 0.75em;
@@ -695,15 +763,77 @@ td:nth-child(6) {
     .toggle-switch {
         display: none;
     }
-    .summary-cards {
-        flex-direction: column;
-    }
     .table{
-        overflow: auto;
+        overflow-y: auto;
+        margin-top: 10px;
     }
-}
-@media only screen and (max-width: 680px){
     .profile{
         display: none;
     }
 }
+
+@media only screen and (max-width: 630px) {
+    .card.dispatch .card-content-container,
+    .card.pending .card-content-container,
+    .card.orders .card-content-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .card {
+        position: relative;
+        overflow: visible;
+    }
+    
+    .icon-container {
+        margin-right: 0;
+        z-index: 2;
+    }
+    
+    .card-content {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;
+        background-color: #f5f3f3;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 8px 0;
+        z-index: 10;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    }
+    
+    .card:hover .card-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(10px);
+    }
+    
+    .card-content h3,
+    .card-content p {
+        padding: 8px 16px;
+        margin: 0;
+        color: #333;
+        font-size: 14px;
+    }
+    .card-content p {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .card-content h3 {
+        font-weight: larger;
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 320px){
+    .notification-icon{
+        display: none;
+    }
+    .recent-orders-btn{
+        display: none;
+    }
+} 
