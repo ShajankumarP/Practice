@@ -7,12 +7,16 @@ let result = 0;
 let principal = document.querySelector("#p");
 let time = document.querySelector("#n");
 let rate = document.querySelector("#r");
+let alertMsg = document.querySelector("#alert");
 
 principal.addEventListener("blur", function() {
   let p = parseFloat(this.value);
   if (isNaN(p) || p < 500 || p > 10000) {
-    alert("Enter principal amount from $500 to $10000");
+    alertMsg.textContent = "Enter principal amount from $500 to $10000";
+    alertMsg.style.color = "red";
     this.value = "";
+  } else {
+    alertMsg.textContent = "";
   }
 });
 
@@ -24,9 +28,12 @@ calculator.addEventListener("submit", (e) => {
   var r = parseFloat(rate.value);
 
   if (isNaN(p) || isNaN(n) || isNaN(r)) {
-    alert("Please enter valid numbers for all fields.");
+    alertMsg.textContent = "Please enter valid numbers for all fields.";
+    alertMsg.style.color = "red";
     return;
   }
+
+  alertMsg.textContent = "";
 
   let addedBonus = 0;
   if (n > 5) {
