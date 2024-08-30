@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Appointment Booking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+       :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --text-color: #333;
+            --card-background: #fff;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        nav {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--primary-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex-grow: 1;
+        }
+        .logout-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s;
+        }
+        .logout-button:hover {
+            background-color: var(--primary-color);
+        }
+        .card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            width: 700px;
+        }
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            margin-top: auto;
+        }
+        .appointment-list {
+            display: grid;
+            gap: 1rem;
+        }
+        .appointment-item {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .appointment-details h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .appointment-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        nav {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--primary-color);
+        }
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .icon-link {
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .icon-link:hover {
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="nav-links">
+                <a href="#" id="nav-booking">Booking</a>
+                <a href="#" id="nav-management">Management</a>
+            </li>
+            <li class="nav-icons">
+                <a href="dashboard.html" class="icon-link"><i class="fa-regular fa-user"></i></a>
+                <a href="index.html" class="icon-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id="booking-section" style="display: none;">
+            <div class="card">
+                <h2>Book an Appointment</h2>
+                <form id="booking-form">
+                    <label for="service">Service:</label>
+                    <select id="service" required>
+                        <option value="">Select a service</option>
+                        <option value="haircut">Haircut</option>
+                        <option value="massage">Massage</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
+
+                    <label for="provider">Provider:</label>
+                    <select id="provider" required>
+                        <option value="">Select a provider</option>
+                        <option value="john">John Doe</option>
+                        <option value="jane">Jane Smith</option>
+                    </select>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" required>
+
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="management-section" style="display: none;">
+            <div class="card">
+                <h2>Manage Your Appointments</h2>
+                <div id="appointment-list" class="appointment-list">
+                    <!-- Appointments will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+
+    <script>
+        // Navigation
+        const navBooking = document.getElementById('nav-booking');
+        const navManagement = document.getElementById('nav-management');
+
+        navBooking.addEventListener('click', () => showSection('booking-section'));
+        navManagement.addEventListener('click', () => showSection('management-section'));
+
+        function showSection(sectionId) {
+            document.getElementById('booking-section').style.display = 'none';
+            document.getElementById('management-section').style.display = 'none';
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Update active nav link
+            navBooking.classList.remove('active');
+            navManagement.classList.remove('active');
+            if (sectionId === 'booking-section') {
+                navBooking.classList.add('active');
+            } else {
+                navManagement.classList.add('active');
+            }
+        }
+
+        // Initialize empty appointments array
+        let appointments = [];
+
+        // Booking form submission
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                id: Date.now(), // Use timestamp as a simple unique id
+                service: document.getElementById('service').value,
+                provider: document.getElementById('provider').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                status: 'Upcoming'
+            };
+            appointments.push(formData);
+            console.log('Booking submitted:', formData);
+            alert('Appointment booked successfully!');
+            this.reset();
+            renderAppointments();
+        });
+
+        // Render appointments
+        function renderAppointments() {
+            const appointmentList = document.getElementById('appointment-list');
+            appointmentList.innerHTML = '';
+            if (appointments.length === 0) {
+                appointmentList.innerHTML = '<p>No appointments scheduled.</p>';
+                return;
+            }
+            appointments.forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.className = 'appointment-item';
+                appointmentElement.innerHTML = `
+                    <div class="appointment-details">
+                        <h3>${appointment.service}</h3>
+                        <p><strong>Provider:</strong> ${appointment.provider}</p>
+                        <p><strong>Date:</strong> ${appointment.date}</p>
+                        <p><strong>Time:</strong> ${appointment.time}</p>
+                        <p><strong>Status:</strong> ${appointment.status}</p>
+                    </div>
+                    <div class="appointment-actions">
+                        <button onclick="rescheduleAppointment(${appointment.id})">Reschedule</button>
+                        <button onclick="cancelAppointment(${appointment.id})" style="background-color: #e74c3c;">Cancel</button>
+                    </div>
+                `;
+                appointmentList.appendChild(appointmentElement);
+            });
+        }
+
+        function rescheduleAppointment(id) {
+            console.log('Reschedule appointment:', id);
+            alert('Reschedule functionality not implemented');
+        }
+
+        function cancelAppointment(id) {
+            console.log('Cancel appointment:', id);
+            appointments = appointments.filter(appointment => appointment.id !== id);
+            renderAppointments();
+            alert('Appointment cancelled successfully');
+        }
+
+        // Initial setup
+        showSection('booking-section');
+        renderAppointments();
+    </script>
+</body>
+</html>
