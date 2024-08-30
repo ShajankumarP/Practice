@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Appointment Booking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav ul li {
+            display: flex;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .appointment-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .appointment-item {
+            padding: 20px;
+        }
+
+        .appointment-details h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .appointment-actions {
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-reschedule {
+            background-color: #3498db;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .btn-cancel {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .reschedule-form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .reschedule-form h4 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            margin-top: 20px;
+        }
+
+        .btn-confirm {
+            background-color: #2ecc71;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .btn-cancel-reschedule {
+            background-color: #95a5a6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="nav-links">
+                <a href="#" id="nav-booking">Booking</a>
+                <a href="#" id="nav-management">Management</a>
+            </li>
+            <li class="nav-icons">
+                <a href="dashboard.html" class="icon-link"><i class="fa-regular fa-user"></i></a>
+                <a href="index.html" class="icon-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id="booking-section" style="display: none;">
+            <div class="card">
+                <h2>Book an Appointment</h2>
+                <form id="booking-form">
+                    <label for="service">Service:</label>
+                    <select id="service" required>
+                        <option value="">Select a service</option>
+                        <option value="haircut">Haircut</option>
+                        <option value="massage">Massage</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
+
+                    <label for="provider">Provider:</label>
+                    <select id="provider" required>
+                        <option value="">Select a provider</option>
+                        <option value="john">John Doe</option>
+                        <option value="jane">Jane Smith</option>
+                    </select>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" required>
+
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="management-section" style="display: none;">
+            <div class="card">
+                <h2>Manage Your Appointments</h2>
+                <div id="appointment-list" class="appointment-list">
+                    <!-- Appointments will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+    <script>
+        // Navigation
+        const navBooking = document.getElementById('nav-booking');
+        const navManagement = document.getElementById('nav-management');
+
+        navBooking.addEventListener('click', () => showSection('booking-section'));
+        navManagement.addEventListener('click', () => showSection('management-section'));
+
+        function showSection(sectionId) {
+            document.getElementById('booking-section').style.display = 'none';
+            document.getElementById('management-section').style.display = 'none';
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Update active nav link
+            navBooking.classList.remove('active');
+            navManagement.classList.remove('active');
+            if (sectionId === 'booking-section') {
+                navBooking.classList.add('active');
+            } else {
+                navManagement.classList.add('active');
+            }
+        }
+
+        // Initialize appointments array
+        let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+        // Booking form submission
+        document.getElementById('booking-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = {
+                id: Date.now(), // Use timestamp as a simple unique id
+                service: document.getElementById('service').value,
+                provider: document.getElementById('provider').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                status: 'Upcoming'
+            };
+            appointments.push(formData);
+            saveAppointments();
+            console.log('Booking submitted:', formData);
+            alert('Appointment booked successfully!');
+            this.reset();
+            renderAppointments();
+        });
+
+        // Render appointments
+        function renderAppointments() {
+            const appointmentList = document.getElementById('appointment-list');
+            appointmentList.innerHTML = '';
+            if (appointments.length === 0) {
+                appointmentList.innerHTML = '<p>No appointments scheduled.</p>';
+                return;
+            }
+            appointments.forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.className = 'appointment-container';
+                appointmentElement.innerHTML = `
+                    <div class="appointment-item">
+                        <div class="appointment-details">
+                            <h3>${appointment.service}</h3>
+                            <p><strong>Provider:</strong> ${appointment.provider}</p>
+                            <p><strong>Date:</strong> <span class="date-field">${appointment.date}</span></p>
+                            <p><strong>Time:</strong> <span class="time-field">${appointment.time}</span></p>
+                            <p><strong>Status:</strong> ${appointment.status}</p>
+                        </div>
+                        <div class="appointment-actions">
+                            <button onclick="toggleReschedule(${appointment.id})" class="btn btn-reschedule">Reschedule</button>
+                            <button onclick="cancelAppointment(${appointment.id})" class="btn btn-cancel">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="reschedule-form">
+                        <h4>Reschedule Appointment</h4>
+                        <div class="form-group">
+                            <label for="reschedule-date-${appointment.id}">New Date:</label>
+                            <input type="date" id="reschedule-date-${appointment.id}" class="reschedule-date" value="${appointment.date}">
+                        </div>
+                        <div class="form-group">
+                            <label for="reschedule-time-${appointment.id}">New Time:</label>
+                            <input type="time" id="reschedule-time-${appointment.id}" class="reschedule-time" value="${appointment.time}">
+                        </div>
+                        <div class="form-actions">
+                            <button onclick="confirmReschedule(${appointment.id})" class="btn btn-confirm">Confirm</button>
+                            <button onclick="toggleReschedule(${appointment.id})" class="btn btn-cancel-reschedule">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                appointmentList.appendChild(appointmentElement);
+            });
+        }
+
+        function toggleReschedule(id) {
+            const appointmentContainer = document.querySelector(`.appointment-container:has(button[onclick="toggleReschedule(${id})"])`);
+            const rescheduleForm = appointmentContainer.querySelector('.reschedule-form');
+            rescheduleForm.style.display = rescheduleForm.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function confirmReschedule(id) {
+            const appointmentContainer = document.querySelector(`.appointment-container:has(button[onclick="toggleReschedule(${id})"])`);
+            const newDate = appointmentContainer.querySelector('.reschedule-date').value;
+            const newTime = appointmentContainer.querySelector('.reschedule-time').value;
+
+            const appointment = appointments.find(app => app.id === id);
+            if (appointment) {
+                appointment.date = newDate;
+                appointment.time = newTime;
+                saveAppointments();
+                
+                // Update the appointment details in the UI
+                const dateField = appointmentContainer.querySelector('.date-field');
+                const timeField = appointmentContainer.querySelector('.time-field');
+                dateField.textContent = newDate;
+                timeField.textContent = newTime;
+                
+                // Hide the reschedule form
+                toggleReschedule(id);
+                
+                alert('Appointment rescheduled successfully');
+            }
+        }
+
+        function cancelAppointment(id) {
+            if (confirm('Are you sure you want to cancel this appointment?')) {
+                appointments = appointments.filter(appointment => appointment.id !== id);
+                saveAppointments();
+                renderAppointments();
+                alert('Appointment cancelled successfully');
+            }
+        }
+
+        function saveAppointments() {
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+        }
+
+        // Initial setup
+        showSection('booking-section');
+        renderAppointments();
+    </script>
+</body>
+
+</html>
