@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.user-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+}
+.appointment-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.appointment-item {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.appointment-details h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.appointment-actions {
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-reschedule {
+    background-color: #3498db;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.reschedule-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.reschedule-form h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.btn-confirm {
+    background-color: #2ecc71;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-cancel-reschedule {
+    background-color: #95a5a6;
+    color: white;
+}
