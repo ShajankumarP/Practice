@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="./admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./admin.js" defer></script>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="#overview" data-section="overview">Overview</a>
+    <a href="#quick-access" data-section="quick-access">Quick Access Links</a>
+    <a href="#reports" data-section="reports">Reports</a>
+    <a href="/Project/index.html" data-section="logout">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Admin Dashboard</h1>
+    </div>
+
+    <!-- Overview Section -->
+    <div id="overview" class="section active">
+      <h2>Overview</h2>
+      <div class="card">
+        <h5>Upcoming Appointments</h5>
+        <div id="upcoming-appointments-container">
+          <!-- Appointments will be added here dynamically -->
+        </div>
+      </div>
+
+      <div class="card">
+        <h5>Service Statistics</h5>
+        <div id="service-stats-container" class="chart-placeholder">
+          <canvas id="service-stats-chart" width="400" height="200"></canvas>
+          <!-- Service statistics will be added here dynamically -->
+        </div>
+      </div>
+
+      <div class="card">
+        <h5>Recent User Activity</h5>
+        <div id="user-activity-container">
+          <!-- Recent activities will be added here dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Access Links Section -->
+    <div id="quick-access" class="section">
+      <h2>Quick Access Links</h2>
+      <div class="card">
+        <h5>Manage Services</h5>
+        <a href="../service_M/service_management.html" class="button">Go to Services</a>
+      </div>
+
+      <div class="card">
+        <h5>Manage Appointments</h5>
+        <a href="../appointment_M/appointment_management.html" class="button">Go to Appointments</a>
+      </div>
+
+      <div class="card">
+        <h5>Manage Users</h5>
+        <a href="../user_M/user_management.html" class="button">Go to Users</a>
+      </div>
+    </div>
+
+    <!-- Reports Section -->
+    <div id="reports" class="section">
+      <h2>Reports</h2>
+      <div class="card">
+        <h5>Generate Report</h5>
+        <p>Select a report type and date range to generate a report:</p>
+
+        <!-- Report Generation Form -->
+        <form id="reportForm">
+          <label for="reportType">Report Type:</label>
+          <select id="reportType" name="reportType">
+            <option value="appointmentHistory">Appointment History</option>
+            <option value="userActivity">User Activity</option>
+            <option value="servicePopularity">Service Popularity</option>
+          </select>
+
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" name="startDate" required>
+
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" name="endDate" required>
+
+          <button type="button" class="button" onclick="generateReport()">Generate Report</button>
+        </form>
+
+        <!-- Report Display Section -->
+        <div id="reportResults" class="report-results">
+          <!-- The generated report will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

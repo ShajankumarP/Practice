@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management</title>
+    <link rel="stylesheet" href="./service_management.css">
+    <style>
+        /* Tab buttons styling */
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab.active {
+            background-color: #fff;
+            border-bottom: none;
+        }
+
+        .tab-content {
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 0 5px 5px 5px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Ensure the tabs align nicely */
+        .tab-container {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Service Management</h1>
+        <button onclick="window.location.href='../admin/admin.html'">Go to Admin Page</button>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="tab-container">
+        <div class="tab active" onclick="showTab(0)">All Services</div>
+        <div class="tab" onclick="showTab(1)">Add/Edit Services</div>
+        <div class="tab" onclick="showTab(2)">Service Availability</div>
+    </div>
+
+    <!-- Tab content sections -->
+    <div id="tabContent0" class="tab-content active">
+        <!-- List of All Services -->
+        <div class="card service-list">
+            <h2>All Services</h2>
+            <ul id="serviceList"></ul>
+        </div>
+    </div>
+
+    <div id="tabContent1" class="tab-content">
+        <!-- Add/Edit Services Section -->
+        <div class="card">
+            <h2>Add/Edit Services: Service Details</h2>
+            <form id="serviceForm">
+                <label for="serviceName">Service Name</label>
+                <input type="text" id="serviceName" name="serviceName" placeholder="Enter service name" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="Enter service description"></textarea>
+
+                <label for="duration">Duration (in minutes)</label>
+                <input type="number" id="duration" name="duration" placeholder="Enter duration" required>
+
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" placeholder="Enter service price" required>
+
+                <label for="providers">Associated Providers</label>
+                <input type="text" id="providers" name="providers" placeholder="Enter providers separated by commas" required>
+
+                <button type="submit" id="serviceSubmit">Add Service</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="tabContent2" class="tab-content">
+        <!-- Service Availability Section -->
+        <div class="card">
+            <h2>Service Availability</h2>
+            <form id="availabilityForm">
+                <label for="availabilityService">Select Service</label>
+                <select id="availabilityService">
+                    <!-- Services will be dynamically added here -->
+                </select>
+
+                <label for="availabilityStart">Availability Start Date</label>
+                <input type="date" id="availabilityStart" name="availabilityStart" required>
+
+                <label for="availabilityEnd">Availability End Date</label>
+                <input type="date" id="availabilityEnd" name="availabilityEnd" required>
+
+                <label for="availabilityTimes">Available Times (comma-separated)</label>
+                <input type="text" id="availabilityTimes" name="availabilityTimes" placeholder="e.g., 09:00-12:00, 13:00-17:00">
+
+                <label for="blackoutPeriods">Blackout Periods (comma-separated, in format yyyy-mm-dd to yyyy-mm-dd)</label>
+                <input type="text" id="blackoutPeriods" name="blackoutPeriods" placeholder="e.g., 2024-08-15 to 2024-08-20">
+                
+                <button type="submit" id="availabilitySubmit">Update Availability</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to switch between tabs
+        function showTab(tabIndex) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Show the selected tab
+            document.getElementById(`tabContent${tabIndex}`).classList.add('active');
+            tabButtons[tabIndex].classList.add('active');
+        }
+
+        // Existing functions for displaying services and handling form submissions
+        let services = JSON.parse(localStorage.getItem('services')) || [];
+        let serviceAvailability = JSON.parse(localStorage.getItem('serviceAvailability')) || {};
+
+        // Function to display services
+        function displayServices() {
+            const serviceList = document.getElementById('serviceList');
+            serviceList.innerHTML = '';
+            services.forEach((service, index) => {
+                const serviceItem = document.createElement('li');
+                serviceItem.className = 'service-item';
+                serviceItem.innerHTML = `
+                    <strong>${service.serviceName}</strong>
+                    <p>Description: ${service.description}</p>
+                    <p>Duration: ${service.duration} minutes</p>
+                    <p>Price: $${service.price}</p>
+                    <p>Providers: ${service.providers.join(', ')}</p>
+                    <button onclick="showEditForm(${index}, event)">Edit</button>
+                    <button onclick="deleteService(${index})">Delete</button>
+                `;
+                serviceList.appendChild(serviceItem);
+            });
+
+            localStorage.setItem('services', JSON.stringify(services));
+        }
+
+        // Populate service dropdown for availability section
+        function populateServices() {
+            const serviceSelect = document.getElementById('availabilityService');
+            serviceSelect.innerHTML = ''; // Clear previous options
+
+            if (services.length === 0) {
+                const noServiceOption = document.createElement('option');
+                noServiceOption.value = '';
+                noServiceOption.text = 'No services available';
+                serviceSelect.appendChild(noServiceOption);
+            } else {
+                services.forEach((service, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.text = service.serviceName;
+                    serviceSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Initial setup
+        displayServices();
+        populateServices();
+    </script>
+</body>
+</html>

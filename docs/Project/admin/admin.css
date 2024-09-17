@@ -1,0 +1,280 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.sidebar {
+  height: 100vh;
+  width: 240px;
+  position: fixed;
+  background-color: #2c3e50;
+  padding-top: 20px;
+  overflow-y: auto;
+  transition: transform 0.3s ease, width 0.3s ease;
+  z-index: 1;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #34495e;
+}
+
+.main-content {
+  margin-left: 240px;
+  padding: 40px;
+  transition: margin-left 0.3s ease;
+  min-height: 100vh; /* Ensure the content fills the viewport height */
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+h2 {
+  color: #555;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card h5 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+p{
+  margin-bottom: 15px;
+}
+.chart-placeholder {
+  height: 200px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-size: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.report-results {
+  margin-top: 20px;
+}
+
+.report-results p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.report-results hr {
+  border: 1px solid #ddd;
+}
+
+#service-stats-chart {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 770px) {
+
+  .main-content {
+      margin-left: 0;
+      padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      width: 200px;
+  }
+
+  .main-content {
+      margin-left: 200px;
+  }
+
+  .card {
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+
+  .button {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+      width: 100%;
+      position: relative;
+      height: auto;
+  }
+
+  .main-content {
+      margin-left: 0;
+      padding: 20px;
+  }
+
+  .sidebar a {
+      padding: 12px;
+      font-size: 14px;
+  }
+
+  .card {
+      padding: 10px;
+  }
+
+  h1 {
+      font-size: 20px;
+  }
+
+  h2 {
+      font-size: 18px;
+  }
+
+  .button {
+      padding: 6px 12px;
+      font-size: 12px;
+  }
+}
+/* General Styling for Report Section */
+#reports .card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#reportForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* General gap between elements */
+}
+
+#reportForm label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#reportForm select,
+#reportForm input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Ensure inputs take full width */
+}
+
+#reportForm button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 20px; /* Ensure space above the button */
+}
+
+#reportForm button:hover {
+  background-color: #2980b9;
+}
+
+/* Layout for Screens Wider than 890px */
+@media (min-width: 890px) {
+  #reportForm {
+    max-width: 600px; /* Optional: restrict form width */
+    margin: 0 auto; /* Center the form */
+  }
+
+  #reportForm label {
+    margin-bottom: 5px; /* Adjust margin as needed */
+  }
+
+}
+
+/* Responsive Adjustments for Screens 890px and Smaller */
+@media (max-width: 889px) {
+  #reportForm {
+    flex-direction: column;
+  }
+
+  #reportForm label {
+    margin-bottom: 15px; /* Add space below labels */
+  }
+
+  #reportForm select,
+  #reportForm input {
+    margin-bottom: 15px; /* Add space below inputs */
+  }
+
+  #reportForm button {
+    margin-top: 20px; /* Ensure button is spaced from inputs */
+  }
+}

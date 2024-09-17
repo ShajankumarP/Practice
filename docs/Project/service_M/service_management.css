@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card h5 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card input, .card textarea, .card select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.card button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #2980b9;
+}
+
+.service-list {
+  margin-top: 20px;
+}
+
+.service-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.service-list li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.edit-form {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.edit-form h3 {
+  margin-top: 0;
+}
+
+.edit-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form form label {
+  margin-bottom: 5px;
+}
+
+.edit-form form input,
+.edit-form form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-form form button {
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.edit-form form button[type="submit"] {
+  background-color: #28a745;
+}
+
+.edit-form form button[type="button"] {
+  background-color: #dc3545;
+}
+.header-container {
+display: flex;
+align-items: center;
+}
+.header-container h1 {
+margin: 0;
+flex: 1;
+}
+.header-container button {
+margin-left: 10px;
+}
+/* Edit Form */
+#editFormTemplate {
+  position: absolute;
+  display: none;
+  z-index: 1000;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#editFormTemplate form {
+  display: flex;
+  flex-direction: column;
+}
+
+#editFormTemplate form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+#editFormTemplate form input,
+#editFormTemplate form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#editFormTemplate form button {
+  margin: 5px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#editFormTemplate form button[type="button"] {
+  background-color: #dc3545;
+}
+
+#editFormTemplate form button[type="button"]:hover {
+  background-color: #c82333;
+}
+
+#editFormTemplate form button[type="submit"] {
+  background-color: #28a745;
+}
+
+#editFormTemplate form button[type="submit"]:hover {
+  background-color: #218838;
+}
+.header-container button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-container button:hover {
+  background-color: #2980b9;
+}
+/* Tab buttons styling */
+.tab {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+  border-radius: 5px 5px 0 0;
+}
+
+.tab.active {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.tab-content {
+  display: none;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 5px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Overlay styles */
+.overlay {
+  display: none;
+  position: fixed; /* Changed to fixed for better positioning */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px; /* Adjusted max-width for better appearance */
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Ensure the tabs align nicely */
+.tab-container {
+  margin-bottom: 10px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+/* Button styles */
+button {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 5px 0 2px;
+  font-weight: bold;
+}
+
+input, textarea, select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Close button styling */
+.close-button {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.close-button:hover {
+  background-color: #c82333;
+}
+
+/* Media Queries */
+@media (max-width: 770px) {
+  .container {
+      width: 95%; /* Adjust container width */
+  }
+
+  .title, .add-user-section {
+      text-align: center; /* Ensure center alignment on smaller screens */
+      margin: 0 auto; /* Center horizontally */
+      padding-left: 30px;
+  }
+  
+  .add-user-section {
+      padding: 15px;
+  }
+
+  .service-item {
+      font-size: 14px;
+  }
+
+  input, select, textarea {
+      padding: 8px;
+  }
+
+  #editServiceForm {
+      width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-item {
+      font-size: 14px;
+  }
+
+  input, select, textarea {
+      padding: 6px;
+  }
+
+  #editServiceForm {
+      width: 100%;
+  }
+}

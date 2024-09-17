@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./appointment_management.css">
+    <script src="./appointment_management.js" defer></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../admin/admin.html">Dashboard</a></li>
+            <li><a href="../index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Appointment Management</h1>
+
+        <div class="filters">
+            <!-- Filter dropdowns and date picker -->
+            <label for="dateFilter">Select Date:</label>
+            <input type="date" id="dateFilter">
+
+            <label for="serviceFilter">Select Service:</label>
+            <select id="serviceFilter">
+                <option value="">All Services</option>
+            </select>
+
+            <label for="providerFilter">Select Provider:</label>
+            <select id="providerFilter" disabled>
+                <option value="">All Providers</option>
+            </select>
+
+        </div>
+
+        <div class="appointment-list">
+            <h2>Appointments</h2>
+            <div id="appointmentsContainer">
+                <!-- Appointments will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

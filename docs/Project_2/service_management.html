@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management</title>
+    <link rel="stylesheet" href="./service_management.css">
+    <style>
+        .inline-form {
+            display: none;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .service-item {
+            position: relative;
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+        .service-list {
+            margin-bottom: 30px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Service Management</h1>
+
+    <!-- List of All Services -->
+    <div class="card service-list">
+        <h2>All Services</h2>
+        <ul id="serviceList"></ul>
+    </div>
+
+    <!-- Add/Edit Services Section -->
+    <div class="card">
+        <h2>Add/Edit Services: Service Details</h2>
+        <form id="serviceForm">
+            <label for="serviceName">Service Name</label>
+            <input type="text" id="serviceName" name="serviceName" placeholder="Enter service name" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="Enter service description"></textarea>
+
+            <label for="duration">Duration (in minutes)</label>
+            <input type="number" id="duration" name="duration" placeholder="Enter duration" required>
+
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" placeholder="Enter service price" required>
+
+            <label for="providers">Associated Providers</label>
+            <input type="text" id="providers" name="providers" placeholder="Enter providers separated by commas" required>
+
+            <button type="submit" id="serviceSubmit">Add Service</button>
+        </form>
+    </div>
+
+    <!-- Service Availability Section -->
+    <div class="card">
+        <h2>Service Availability</h2>
+        <form id="availabilityForm">
+            <label for="availabilityService">Select Service</label>
+            <select id="availabilityService">
+                <!-- Services will be dynamically added here -->
+            </select>
+
+            <label for="availabilityStart">Availability Start Date</label>
+            <input type="date" id="availabilityStart" name="availabilityStart" required>
+
+            <label for="availabilityEnd">Availability End Date</label>
+            <input type="date" id="availabilityEnd" name="availabilityEnd" required>
+
+            <label for="availabilityTimes">Available Times (comma-separated)</label>
+            <input type="text" id="availabilityTimes" name="availabilityTimes" placeholder="e.g., 09:00-12:00, 13:00-17:00">
+
+            <label for="blackoutPeriods">Blackout Periods (comma-separated, in format yyyy-mm-dd to yyyy-mm-dd)</label>
+            <input type="text" id="blackoutPeriods" name="blackoutPeriods" placeholder="e.g., 2024-08-15 to 2024-08-20">
+            
+            <button type="submit" id="availabilitySubmit">Update Availability</button>
+        </form>
+    </div>
+
+    <!-- Floating Edit Form Template -->
+    <div id="editFormTemplate" class="inline-form">
+        <form id="editForm" onsubmit="return false;">
+            <label for="editServiceName">Service Name</label>
+            <input type="text" id="editServiceName" required>
+
+            <label for="editDescription">Description</label>
+            <textarea id="editDescription" rows="4" required></textarea>
+
+            <label for="editDuration">Duration (in minutes)</label>
+            <input type="number" id="editDuration" required>
+
+            <label for="editPrice">Price</label>
+            <input type="number" id="editPrice" required>
+
+            <label for="editProviders">Associated Providers</label>
+            <input type="text" id="editProviders" required>
+
+            <button type="button" onclick="saveEdit()">Save</button>
+            <button type="button" onclick="hideEditForm()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        let services = JSON.parse(localStorage.getItem('services')) || [];
+        let serviceAvailability = JSON.parse(localStorage.getItem('serviceAvailability')) || {};
+
+        // Function to display services
+        function displayServices() {
+            const serviceList = document.getElementById('serviceList');
+            serviceList.innerHTML = '';
+            services.forEach((service, index) => {
+                const serviceItem = document.createElement('li');
+                serviceItem.className = 'service-item';
+                serviceItem.innerHTML = `
+                    <strong>${service.serviceName}</strong>
+                    <p>Description: ${service.description}</p>
+                    <p>Duration: ${service.duration} minutes</p>
+                    <p>Price: $${service.price}</p>
+                    <p>Providers: ${service.providers.join(', ')}</p>
+                    <button onclick="showEditForm(${index}, event)">Edit</button>
+                    <button onclick="deleteService(${index})">Delete</button>
+                `;
+                serviceList.appendChild(serviceItem);
+            });
+
+            localStorage.setItem('services', JSON.stringify(services));
+        }
+
+        // Show edit form for a specific service
+        function showEditForm(index, event) {
+            event.stopPropagation();
+            const form = document.getElementById('editFormTemplate');
+            const service = services[index];
+
+            form.style.display = 'block';
+            form.style.top = `${event.clientY + window.scrollY}px`; // Adjust for page scroll
+            form.style.left = `${event.clientX + window.scrollX}px`; // Adjust for page scroll
+
+            document.getElementById('editServiceName').value = service.serviceName;
+            document.getElementById('editDescription').value = service.description;
+            document.getElementById('editDuration').value = service.duration;
+            document.getElementById('editPrice').value = service.price;
+            document.getElementById('editProviders').value = service.providers.join(', ');
+
+            form.setAttribute('data-index', index); // Store index for later use
+        }
+
+        // Hide edit form
+        function hideEditForm() {
+            document.getElementById('editFormTemplate').style.display = 'none';
+        }
+
+        // Save edited service details
+        function saveEdit() {
+            const index = document.getElementById('editFormTemplate').getAttribute('data-index');
+            const serviceName = document.getElementById('editServiceName').value;
+            const description = document.getElementById('editDescription').value;
+            const duration = document.getElementById('editDuration').value;
+            const price = document.getElementById('editPrice').value;
+            const providers = document.getElementById('editProviders').value.split(',').map(p => p.trim());
+
+            services[index] = {
+                ...services[index],
+                serviceName,
+                description,
+                duration,
+                price,
+                providers
+            };
+
+            displayServices();
+            hideEditForm();
+            alert('Service details updated successfully');
+        }
+
+        // Populate service dropdown
+        function populateServices() {
+            const serviceSelect = document.getElementById('availabilityService');
+            serviceSelect.innerHTML = ''; // Clear previous options
+
+            if (services.length === 0) {
+                const noServiceOption = document.createElement('option');
+                noServiceOption.value = '';
+                noServiceOption.text = 'No services available';
+                serviceSelect.appendChild(noServiceOption);
+            } else {
+                services.forEach((service, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.text = service.serviceName;
+                    serviceSelect.appendChild(option);
+                });
+            }
+
+            console.log('Services added to dropdown:', services);  // Debugging log
+
+            if (serviceSelect.options.length > 0) {
+                serviceSelect.selectedIndex = 0;
+                serviceSelect.dispatchEvent(new Event('change')); // Trigger change event to load availability
+            }
+        }
+
+        // Event listener for service dropdown change
+        document.getElementById('availabilityService').addEventListener('change', function () {
+            const selectedServiceIndex = this.value;
+            console.log('Selected service index:', selectedServiceIndex);  // Debugging log
+
+            if (serviceAvailability[selectedServiceIndex]) {
+                document.getElementById('availabilityStart').value = serviceAvailability[selectedServiceIndex].availabilityStart || '';
+                document.getElementById('availabilityEnd').value = serviceAvailability[selectedServiceIndex].availabilityEnd || '';
+                document.getElementById('availabilityTimes').value = serviceAvailability[selectedServiceIndex].availabilityTimes || '';
+                document.getElementById('blackoutPeriods').value = serviceAvailability[selectedServiceIndex].blackoutPeriods || '';
+            } else {
+                document.getElementById('availabilityForm').reset(); // Reset form if no availability is found
+            }
+        });
+
+        // Update service availability on form submit
+        document.getElementById('availabilityForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const serviceIndex = document.getElementById('availabilityService').value;
+            if (serviceIndex === '') return alert('Please select a service.');
+
+            const availabilityData = {
+                availabilityStart: document.getElementById('availabilityStart').value,
+                availabilityEnd: document.getElementById('availabilityEnd').value,
+                availabilityTimes: document.getElementById('availabilityTimes').value,
+                blackoutPeriods: document.getElementById('blackoutPeriods').value
+            };
+
+            serviceAvailability[serviceIndex] = availabilityData;
+            localStorage.setItem('serviceAvailability', JSON.stringify(serviceAvailability));
+
+            alert('Service availability updated successfully');
+        });
+
+        // Delete a service
+        function deleteService(index) {
+            services.splice(index, 1);
+            displayServices();
+        }
+
+        // Initial setup
+        displayServices();
+        populateServices();
+    </script>
+</body>
+</html>

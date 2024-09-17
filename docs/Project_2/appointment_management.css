@@ -1,0 +1,231 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Filters */
+.filters {
+    margin-bottom: 20px;
+}
+
+.filters label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.filters input[type="date"],
+.filters select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.filters button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.filters button:hover {
+    background-color: #2980b9;
+}
+
+/* Appointment List */
+.appointment-list {
+    margin-top: 20px;
+}
+
+.appointment-list h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Appointments Container */
+#appointments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Appointment Item */
+.appointment-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.appointment-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.appointment-details h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.appointment-actions {
+    margin-top: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    color: #fff;
+}
+
+.btn-reschedule {
+    background-color: #3498db;
+    margin-right: 10px;
+}
+
+.btn-reschedule:hover {
+    background-color: #2980b9;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+}
+
+.btn-cancel:hover {
+    background-color: #c0392b;
+}
+
+/* Reschedule Form */
+.reschedule-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    display: none;
+}
+
+.reschedule-form h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.btn-confirm {
+    background-color: #2ecc71;
+    margin-right: 10px;
+}
+
+.btn-confirm:hover {
+    background-color: #27ae60;
+}
+
+.btn-cancel-reschedule {
+    background-color: #95a5a6;
+}
+
+.btn-cancel-reschedule:hover {
+    background-color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters label,
+    .filters input,
+    .filters select,
+    .filters button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #appointments-container {
+        flex-direction: column;
+    }
+}

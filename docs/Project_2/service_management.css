@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card h5 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .card label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .card input, .card textarea, .card select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .card button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .card button:hover {
+    background-color: #2980b9;
+  }
+
+  .service-list {
+    margin-top: 20px;
+  }
+
+  .service-list ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-list li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .edit-form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.edit-form h3 {
+    margin-top: 0;
+}
+
+.edit-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form form label {
+    margin-bottom: 5px;
+}
+
+.edit-form form input,
+.edit-form form textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-form form button {
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.edit-form form button[type="submit"] {
+    background-color: #28a745;
+}
+
+.edit-form form button[type="button"] {
+    background-color: #dc3545;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+}
+.header-container h1 {
+  margin: 0;
+  flex: 1;
+}
+.header-container button {
+  margin-left: 10px;
+}

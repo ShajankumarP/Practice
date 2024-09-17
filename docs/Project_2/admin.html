@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="./admin.css">
+  <script src="./admin.js" defer></script>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="#overview" data-section="overview">Overview</a>
+    <a href="#quick-access" data-section="quick-access">Quick Access Links</a>
+    <a href="#reports" data-section="reports">Reports</a>
+    <a href="#logout" data-section="logout">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Admin Dashboard</h1>
+    </div>
+
+    <!-- Overview Section -->
+    <div id="overview" class="section active">
+      <h2>Overview</h2>
+      <div class="card">
+        <h5>Upcoming Appointments</h5>
+        <!-- <p>Appointment 1: 12th Aug, 2024 - 10:00 AM</p>
+        <p>Appointment 2: 13th Aug, 2024 - 1:30 PM</p> -->
+      </div>
+
+      <div class="card">
+        <h5>Service Statistics</h5>
+        <div class="chart-placeholder">Chart Goes Here</div>
+      </div>
+
+      <div class="card">
+        <h5>Recent User Activity</h5>
+        <!-- <p>User A booked an appointment</p>
+        <p>User B updated their profile</p> -->
+      </div>
+    </div>
+
+    <!-- Quick Access Links Section -->
+    <div id="quick-access" class="section">
+      <h2>Quick Access Links</h2>
+      <div class="card">
+        <h5>Manage Services</h5>
+        <a href="./service_management.html" class="button">Go to Services</a>
+      </div>
+
+      <div class="card">
+        <h5>Manage Appointments</h5>
+        <a href="./appointment_management.html" class="button">Go to Appointments</a>
+      </div>
+
+      <div class="card">
+        <h5>Manage Users</h5>
+        <a href="#" class="button">Go to Users</a>
+      </div>
+    </div>
+
+    <!-- Reports Section -->
+    <div id="reports" class="section">
+      <h2>Reports</h2>
+      <div class="card">
+        <h5>Generate Report</h5>
+        <!-- <p>Select a report type and date range to generate a report.</p>
+        <a href="#" class="button">Generate Report</a> -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

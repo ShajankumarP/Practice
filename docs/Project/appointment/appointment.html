@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./appointment.css">
+    <script src="./appointment.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="nav-links">
+                <a href="#" id="nav-booking">Booking</a>
+                <a href="#" id="nav-management">Management</a>
+            </li>
+            <li class="nav-icons">
+                <a href="../dashboard/dashboard.html" class="icon-link"><i class="fa-regular fa-user"></i></a>
+                <a href="/Project/index.html" class="icon-link"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id="booking-section" style="display: none;">
+            <div class="card">
+                <h2>Book an Appointment</h2>
+                <form id="booking-form">
+                    
+                    <label for="service">Service:</label>
+                    <select id="service" required>
+                        <option value="">Select a service</option>
+                        <!-- Options will be dynamically added here -->
+                    </select>
+
+                    <label for="provider">Provider:</label>
+                    <select id="provider" required>
+                        <option value="">Select a provider</option>
+                        <!-- Options will be dynamically added here -->
+                    </select>
+
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" required>
+
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="management-section" style="display: none;">
+            <div class="card">
+                <h2>Manage Your Appointments</h2>
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="upcoming">Upcoming</button>
+                    <button class="tab-button" data-tab="history">History</button>
+                </div>
+                <div id="upcoming-appointments" class="tab-content active">
+                    <!-- Upcoming appointments will be dynamically added here -->
+                </div>
+                <div id="history-appointments" class="tab-content">
+                    <h3>Appointment History</h3>
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Provider</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Past appointments will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
