@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    padding: 16px;
+    height: fit-content;
+    width: 400px;
+    border: .5px solid #333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#title{
+    padding-bottom: 10px;
+}
+     
+button {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 45px;
+    font-size: smaller;
+}        
+button:hover {
+    background-color: #0056b3;
+}
+
+input, button {
+    margin: 10px 0;
+    padding: 5px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.actions {
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.icon-btn {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.icon-btn:hover {
+    color: #007bff;
+}
+
+.icon-btn:not(:last-child) {
+    margin: 5px;
+}
+
+#inventoryList {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
